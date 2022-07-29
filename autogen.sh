@@ -39,7 +39,7 @@ check_version ()
 }
 
 echo
-echo "I am testing that you have the required versions of autoconf," 
+echo "I am testing that you have the required versions of autoconf,"
 echo "automake, glib-gettextize and intltoolize..."
 echo
 
@@ -62,6 +62,9 @@ echo -n "checking for automake >= $AUTOMAKE_REQUIRED_VERSION ... "
 if ($AUTOMAKE --version) < /dev/null > /dev/null 2>&1; then
     AUTOMAKE=$AUTOMAKE
     ACLOCAL=$ACLOCAL
+elif (automake-1.16 --version) < /dev/null > /dev/null 2>&1; then
+    AUTOMAKE=automake-1.16
+    ACLOCAL=aclocal-1.16
 elif (automake-1.15 --version) < /dev/null > /dev/null 2>&1; then
     AUTOMAKE=automake-1.15
     ACLOCAL=aclocal-1.15
@@ -121,7 +124,7 @@ fi
 if test "$DIE" -eq 1; then
     echo
     echo "Please install/upgrade the missing tools and call me again."
-    echo  
+    echo
     exit 1
 fi
 
